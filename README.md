@@ -1,4 +1,4 @@
-# Solana Wallet <img src="https://solana.com/_next/static/media/solanaLogoMark.17260911.svg", heght:"50", width:"50" >
+# Solana Wallet <img src="https://solana.com/_next/static/media/solanaLogoMark.17260911.svg", heght:"50", width:"50" />
 
 **Manage a Solana wallet independently**
 
