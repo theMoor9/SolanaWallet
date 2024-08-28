@@ -14,7 +14,6 @@
 
 ## Realeases
 
-- EN (Current)
 - [IT](./release/IT/) 
 
 ## Description
