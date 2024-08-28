@@ -2,6 +2,11 @@
 
 **Manage a Solana wallet independently**
 
+## Realeases
+
+- EN (Current)
+- [IT](./release/IT/) 
+
 ## Description
 
 This repository allows you to manage a Solana (SOL) wallet independently. With this tool, you can create, view, and manage wallet addresses, perform transactions, and check balances. It is designed for users who want complete control over their operations on Solana.
