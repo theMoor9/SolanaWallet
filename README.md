@@ -1,5 +1,5 @@
 <div align="center" >
-    <img src="https://solana.com/_next/static/media/solanaLogo.74d35f7a.svg", heght:"25", width:"25" />
+    <img src="https://solana.com/_next/static/media/solanaLogo.74d35f7a.svg", heght:"15", width:"15" />
 </div>
 <div align="center">
     <p>
