@@ -1,66 +1,65 @@
 # Solana Airdrop Wallet Setup
 
-Questo progetto è un esempio di come creare un wallet Solana, ottenere il saldo e richiedere un airdrop simulato su Devnet utilizzando Node.js e la libreria `@solana/web3.js`. (Devnet è una rete di test Solana che consente la simulazione di transazioni senza utilizzare fondi reali).
+This project is an example of how to create a Solana wallet, check the balance, and request a simulated airdrop on Devnet using Node.js and the `@solana/web3.js` library. (Devnet is a Solana test network that allows simulation of transactions without using real funds). The script will generate a temporary wallet.
 
-## Prerequisiti
+## Prerequisites
 
-### Installare Node.js
+### Install Node.js
 
-Per eseguire questo progetto, è necessario avere Node.js installato sul proprio sistema. Node.js include anche npm, il gestore dei pacchetti che utilizzeremo per installare le dipendenze.
+To run this project, you need to have Node.js installed on your system. Node.js also includes npm, the package manager that we will use to install dependencies.
 
-#### Passaggi per Installare Node.js:
+#### Steps to Install Node.js:
 
-1. Vai al sito ufficiale di Node.js: [nodejs.org](https://nodejs.org/)
-2. Scarica l'ultima versione stabile per il tuo sistema operativo.
-3. Segui le istruzioni di installazione.
+1. Go to the official Node.js website: [nodejs.org](https://nodejs.org/)
+2. Download the latest stable version for your operating system.
+3. Follow the installation instructions.
 
-Per verificare che Node.js sia installato correttamente, apri il terminale e esegui:
+To verify that Node.js is installed correctly, open the terminal and run:
 
 ```sh
 node -v
 ```
 
-Dovresti vedere un output che indica la versione di Node.js installata (ad esempio, `v16.14.0`).
+You should see an output indicating the installed version of Node.js (e.g., `v16.14.0`).
 
-## Configurazione del Progetto
+## Project Setup
 
-### Passaggi per Configurare ed Eseguire il Progetto
+### Steps to Set Up and Run the Project
 
-1. **Clona la repository o scarica i file**: Assicurati di avere i file `setup.js` e `index.js` nella stessa cartella sul tuo sistema.
+1. **Clone the repository or download the files**: Ensure you have the `setup.js` and `index.js` files in the same folder on your system.
     
-2. **Apri il terminale** ed entra nella cartella dove hai salvato i file:
+2. **Open the terminal** and navigate to the folder where you saved the files:
     
 
 ```sh
 cd /percorso/dove/si/trova/index.js
 ```
 
-3. **Genera `package.json`**: Prima di eseguire `setup.js`, l'utente dovrebbe inizializzare un progetto Node.js eseguendo:
-
+3. **Generate `package.json`**: Before running `setup.js`, the user should initialize a Node.js project by running:
 
 ```sh
 npm init -y
 ```
 
-Questo comando genera un file `package.json` con le configurazioni di base.
+	This command generates a `package.json` file with basic configurations.
 
-4. **Esegui `setup.js`** per installare le dipendenze necessarie:
+4. **Run `setup.js`** to install the necessary dependencies:
 
 
 ```sh
 node setup.js
 ```
 
-Questo comando verificherà se la libreria `@solana/web3.js` è installata e, in caso contrario, la installerà automaticamente.
+	This command will check if the `@solana/web3.js` library is installed and, if not, install it automatically.
 
-5. **Esegui `index.js`** per creare il wallet Solana e ottenere il saldo:
+5. **Run `index.js`** to create the Solana wallet and check the balance:
 
 
 ```sh
 node index.js
 ```
 
-Dopo l'esecuzione, vedrai stampata la chiave pubblica del wallet nella console. Se configurato per farlo, vedrai anche il saldo del wallet (inizialmente 0 SOL per un wallet nuovo).
+	After running, you will see the wallet's public key printed in the console. If configured to do so, you will also see the wallet's balance (initially 0 SOL for a new wallet).
 
 ## Author
 

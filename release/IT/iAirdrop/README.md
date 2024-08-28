@@ -1,6 +1,6 @@
 # Solana Airdrop Wallet Setup
 
-Questo progetto è un esempio di come creare un wallet Solana, ottenere il saldo e richiedere un airdrop simultato su devnet utilizzando Node.js e la libreria `@solana/web3`. (Devnet è una rete di test Solana, che consente la simulazione di transazioni senza utilizzare fondi reali) js`.
+Questo progetto è un esempio di come creare un wallet Solana, ottenere il saldo e richiedere un airdrop simulato su Devnet utilizzando Node.js e la libreria `@solana/web3.js`. (Devnet è una rete di test Solana che consente la simulazione di transazioni senza utilizzare fondi reali).
 
 ## Prerequisiti
 
@@ -30,36 +30,40 @@ Dovresti vedere un output che indica la versione di Node.js installata (ad esemp
     
 2. **Apri il terminale** ed entra nella cartella dove hai salvato i file:
     
+
 ```sh
 cd /percorso/dove/si/trova/index.js
 ```
 
 3. **Genera `package.json`**: Prima di eseguire `setup.js`, l'utente dovrebbe inizializzare un progetto Node.js eseguendo:
 
+
 ```sh
 npm init -y
 ```
 
 	Questo comando genera un file `package.json` con le configurazioni di base.
-	
+
 4. **Esegui `setup.js`** per installare le dipendenze necessarie:
-    
+
+
 ```sh
 node setup.js
 ```
-    
-    Questo comando verificherà se la libreria `@solana/web3.js` è installata e, in caso contrario, la installerà automaticamente.
-    
+
+	Questo comando verificherà se la libreria `@solana/web3.js` è installata e, in caso contrario, la installerà automaticamente.
+
 5. **Esegui `index.js`** per creare il wallet Solana e ottenere il saldo:
-    
+
+
 ```sh
 node index.js
 ```
-    
-    Dopo l'esecuzione, vedrai stampata la chiave pubblica del wallet nella console. Se configurato per farlo, vedrai anche il saldo del wallet (inizialmente 0 SOL per un wallet nuovo).
 
+	Dopo l'esecuzione, vedrai stampata la chiave pubblica del wallet nella console. Se configurato per farlo, vedrai anche il saldo del wallet (inizialmente 0 SOL per un wallet nuovo).
 
 ## Author
+
 Kenneth Boldrini
 
 ## License

@@ -62,7 +62,7 @@
  * @note `async()` : Asynchronous function that returns a Promise resolved to an await call (See later).
  *                   Promise : States of Pending, Fulfilled, Rejected
  * @function clusterApiUrl() : Function that returns the API URL of the specified Solana network.
- * @argument `devnet` : Solana test network, allowing simulation of transactions without using real funds.
+ * @argument `devnet` or Connection(https://api.mainnet-beta.solana.com) : Solana test network, allowing simulation of transactions without using real funds.
  * @argument `mainnet` : Solana main network, used for real transactions with real funds.
  * @argument `testnet` : Solana test network, similar to devnet but with some differences.
  * @argument `'confirmed'` : Level of transaction confirmation required to consider an action confirmed.
