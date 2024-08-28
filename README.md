@@ -3,12 +3,12 @@
 </div>
 <div align="center">
     <p>
-        <h1>Wallet</h1>
+        <h1>Wallet Repo</h1>
     </p>
     <p>
         <b>Manage a Solana wallet independently</b>
     </p>
-    <br><br><br>
+    <br>
 </div>
 
 
