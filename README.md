@@ -1,13 +1,16 @@
 <div align="center" >
-    <img src="https://solana.com/_next/static/media/solanaLogo.74d35f7a.svg", heght:"15", width:"15" />
+    <img src="https://solana.com/_next/static/media/solanaLogo.74d35f7a.svg"/>
 </div>
 <div align="center">
     <p>
         <h1>Wallet</h1>
     </p>
+    <p>
+        <b>Manage a Solana wallet independently</b>
+    </p>
+    <br><br><br>
 </div>
 
-**Manage a Solana wallet independently**
 
 ## Realeases
 
