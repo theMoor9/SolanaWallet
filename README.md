@@ -11,10 +11,19 @@
     <br>
 </div>
 
+## Blockchain Basics Resources
+
+For those who are new to blockchain and need a stronger foundational understanding, i suggest exploring the documentation from the Blockchain CheatRepo [here](https://github.com/theMoor9/blockchain-potential-carnival). 
+
+This resource will help you build the necessary knowledge to better engage with the following material.
 
 ## Realeases
 
 - [IT](./release/IT/) 
+
+## Cheat Sheet
+
+You can find the operational guides [here](./cheat_sheets/pdf/).
 
 ## Description
 
