@@ -2,31 +2,31 @@
 
 ##### **Table of contents**
 
-###### § Prerequisites
+###### [§ Prerequisites](#-Prerequisites-1)
 1. [Node.js](#1-nodejs)
 2. [Rust](#2-rust)
 3. [Solana](#3-solana)
 4. [Mocha](#4-mocha)
 5. [Anchor](#5-anchor)
-###### § Wallet
+###### [§ Wallet](#-Wallet-1)
 1. [Generate Private Key](#1-generate-private-key)
 2. [Derive Public Key](#2-derive-public-key)
 3. [Integrate JavaScript functions](#3-integrate-javascript-functions)
 4. [Network](#4-network)
-   - 4.1 [Local Devnet Mainnet](#41-local-devnet-mainnet)
+   - 4.1 [Local Devnet Mainnet](#local-devnet-mainnet)
 5. [Balance](#5-balance)
-###### § Test Validator
+###### [§ Test Validator](#-Test-Validator-1)
 - [Test Validator](#-test-validator)
-###### § Airdrop
+###### [§ Airdrop](#-Airdrop-1)
 1. [Solana CLI](#1-solana-cli)
 2. [JavaScript](#2-javascript)
-###### § Token
+###### [§ Token](#-Token-1)
 1. [Prerequisites](#1-prerequisites)
 2. [Create](#2-create)
 3. [Account](#3-account)
-   - 3.1[Balance](#31-balance)
+   - 3.1[Balance](#balance)
 4. [Mint](#4-mint)
-   - 4.1 [Limit Supply](#41-limit-supply)
+   - 4.1 [Limit Supply](#Limit-Supply)
 ---
 
 ## **§ Prerequisites**
@@ -49,7 +49,7 @@ Creating a wallet is the first step as a base to interact with the network
 ### 2. Derive Public Key
 ### 3. Integrate JavaScript functions
 ### 4. Network 
-- #### 4.1 Local Devnet Mainnet
+- #### Local Devnet Mainnet
 ### 5. Balance
 
 ---
@@ -70,6 +70,6 @@ This will simulate your machine being a mining node
 ### 1. Prerequisites
 ### 2. Create
 ### 3. Account
-- ##### 3.1 Balance
+- ##### Balance
 ### 4. Mint
-- ##### 4.1 Limit Supply
+- ##### Limit Supply
