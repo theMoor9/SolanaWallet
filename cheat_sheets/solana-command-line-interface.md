@@ -12,19 +12,21 @@
 4. [Mocha](#4-mocha)
 5. [Anchor](#5-anchor)
 ###### [§ Wallet](#-Wallet-1)
-1. [Generate Private Key](#1-generate-private-key)
-2. [Derive Public Key](#2-derive-public-key)
-3. [Integrate JavaScript functions](#3-integrate-javascript-functions)
-4. [Network](#4-network)
-   - 4.1 [Local Devnet Mainnet](#local-devnet-mainnet)
+1. [Setup](#1-Setup)
+2. [Generate Private Key](#2-generate-private-key)
+3. [Derive Public Key](#3-derive-public-key)
+4. [Integrate JavaScript functions](#4-integrate-javascript-functions)
 5. [Balance](#5-balance)
+6. [Network](#6-network)
+	6.1 [Localnet](#Localnet)
+	6.2 [Devnet](#Devnet)
+	6.3 [Testnet](#testnet)
+	6.4 [Mainnet](#Mainnet)
 ###### [§ Test Validator](#-Test-Validator-1)
-- [Test Validator](#-test-validator)
 ###### [§ Airdrop](#-Airdrop-1)
-1. [Solana CLI](#1-solana-cli)
-2. [JavaScript](#2-javascript)
+-  [JavaScript](#javascript)
 ###### [§ Token](#-Token-1)
-1. [Prerequisites](#1-prerequisites)
+1. [Setup](#1-Setup)
 2. [Create](#2-create)
 3. [Account](#3-account)
    - 3.1[Balance](#balance)
@@ -40,7 +42,7 @@
 ### 0. System
 
 🪟 ***Windows*** *Standard Procedure*
-We will use the ***Linux*** 🐧 subsystem for ***Windows*** 🪟, meanwhile ***macOS*** 🍎 can skip [here](#1-Nodejs) and native ***Linux*** 🐧 [here](#Update).
+We will use the ***Linux*** 🐧 subsystem for ***Windows*** 🪟, meanwhile ***macOS*** 🍎 can skip [here](#1-Install-NVM) and native ***Linux*** 🐧 [here](#Update).
 
 *Install*
 ```shell
@@ -58,7 +60,7 @@ ubuntu
 sudo apt-get install curl
 ```
 
-###### *Update*
+##### *Update*
 ```sh
 sudo apt-get update && sudo apt-get upgrade && sudo apt-get install -y pkg-config build-essential libudev-dev libssl-dev
 ```
@@ -109,7 +111,7 @@ rustc --version
 cargo --version
 ```
 
-### 3. Solana 
+### 3. Solana
 
 >The most powerful Blockchain technology according my modest opinion
 
@@ -123,21 +125,21 @@ sh -c "$(curl -sSfL https://release.solana.com/v1.9.5/install)"
 solana --version
 ```
 
-*Local Host Setup*
+##### *Local Host Setup*
 ```sh
 solana config set --url localhost
 solana config get
 ```
 - Result
 ``` 
-Config File: /Users/nicholas-g/.config/solana/cli/config.yml
+Config File: /Users/your-name/.config/solana/cli/config.yml
 RPC URL: http://localhost:8899
 WebSocket URL: ws://localhost:8900/ (computed)
-Keypair Path: /Users/nicholas-g/.config/solana/id.json
+Keypair Path: /Users/your-name/.config/solana/id.json
 Commitment: confirmed
 ```
 
->Later we will setup the `Keypair Path` 
+>Later we will setup the `Keypair Path` which now is set to default `/Users/your-name/.config/solana/id.json`
 ### 4. Mocha ☕
 
 >**Mocha** is a JavaScript testing framework that facilitates running and organizing unit and integration tests for Node.js applications.
@@ -156,7 +158,7 @@ mocha --version
 
 >**Anchor** is a development framework for the Solana blockchain that simplifies the creation, testing, and deployment of smart contracts.
 
-###### Yarn - JavaScript Dependency
+#### Yarn - JavaScript Dependency
 
 *Install JS dependency* 🍎
 ```sh
@@ -188,18 +190,147 @@ anchor --version
 
 >Creating a wallet is the first step as a base to interact with the network.
 
-### 1. Generate Private Key
-### 2. Derive Public Key
-### 3. Integrate JavaScript functions
-### 4. Network 
-- #### Local Devnet Mainnet
+### 1. Setup
+
+Folder
+```sh
+cd path/to/wallet/folder
+mkdir mywallet
+```
+
+Node package manager
+```sh
+npm init -y
+```
+
+Install package needed to interact with the blockchain network with JavaScript 
+```sh
+npm install --save @solana/web3.js
+```
+
+or
+
+Generate a setup file like i did to run like
+```sh
+node setup.js
+```
+
+You can find the code [here](https://github.com/theMoor9/solana-wallet/blob/main/ioWallet/setup.js) setup.js file.
+
+### 2. Generate Key Pair
+
+>In a nutshell u should consider the Key pair as another way to say Wallet.
+
+For this we will use the Solana CLI which creates a formatted key for you, giving the you the possibility to add a passphrase to lock secure you credentials.
+
+>If you don't need it just press `Enter` when asked, at your own risk.
+
+```sh
+solana-keygen new --outfile /path/to/your/new-keypair.json --force
+```
+
+Specifying the path for the keygen will allow you to have multiple wallets linked to every project folder, otherwise it will save the key in `/home/user/.config/solana/id.json` as default. 
+
+This is concept can be applied to the [Local Host Setup](#Local-Host-Setup) that we mentioned earlier which you can choose to leave it as a default or set it to a personalized wallet like so
+
+```sh
+solana config set --keypair /path/to/other/location/wallet.json
+```
+
+### 3. Derive Public Key
+
+> This will return your public key derived from the private to be extra sure.
+
+From path
+```sh
+solana-keygen pubkey /path/to/your/new-keypair.json
+```
+
+*From default `/home/user/.config/solana/id.json`*
+```sh
+solana address
+```
+
+### 4. Wallet.js
+
+You can find the code [here](https://github.com/theMoor9/solana-wallet/blob/main/ioWallet/wallet.js) with a comprehensive set of comments for better understanding of dynamics. 
+
+To run functionality
+```sh
+node path/to/wallet.js
+```
+
 ### 5. Balance
+
+>Keeping track of balance as they thought me in Banking, Finance and Financial Markets university is the art key to success.
+
+*From path*
+```sh
+solana balance /path/to/your/new-keypair.json --url devnet
+```
+
+*From default `/home/user/.config/solana/id.json
+```sh
+solana balance --url devnet
+```
+
+### 6. Network
+
+You can check the status of your wallet at https://explorer.solana.com/ by adding your public key to the search bar.
+
+The Solana Network splits in four accessible branches:
+
+- ##### Localnet
+
+```sh
+solana balance --url http://localhost:8899
+
+solana balance --url localnet
+```
+
+- ##### Devnet
+```sh
+solana balance --url https://api.devnet.solana.com
+
+solana balance --url localnet
+```
+
+- ##### Testnet
+
+```sh
+solana balance --url https://api.testnet.solana.com
+
+solana balance --url testnet
+```
+
+- ##### Mainnet
+
+```sh
+solana balance --url https://api.mainnet-beta.solana.com
+
+solana balance --url mainnet
+```
+
+>You can find a way to set the kind of net through JavaScript  from line `90` in the `wallet.js` file  [here](https://github.com/theMoor9/solana-wallet/blob/main/ioWallet/wallet.js).
 
 ---
 
 ## **§ Test Validator**
 
->This will simulate your machine being a mining node.
+>The way to simulate your machine as a "mining" node, or more accurately, a Solana Validator Node.
+
+The CLI functionality will use the credentials specified in the config file set by:
+
+`solana config set --keypair /path/to/other/location/wallet.json` 
+
+or, if not specified, it will default to:
+
+`/home/user/.config/solana/id.json`
+
+When you run the command, it will create a folder with all the necessary tools and data in the directory from which you execute:
+```sh
+solana-test-validator
+```
 
 ---
 
@@ -207,16 +338,22 @@ anchor --version
 
 >No, we're not dropping bombs... Or, are we?
 
-### 1. Solana CLI
-### 2. JavaScript 
+
+### JavaScript
+
+You can find the code [here](https://github.com/theMoor9/solana-wallet/blob/main/ioAirdrop/index.js) with a comprehensive set of comments for better understanding of dynamics. 
+
+> I personally suggest to read the README.md file.
 
 ---
 
 ## **§ Token**
 
 >Yes, this may be the bomb type. Make sure to create something big ☄️
+### 1. Setup
 
-### 1. Prerequisites
+spl-token-cli
+
 ### 2. Create
 ### 3. Account
 - ##### Balance
