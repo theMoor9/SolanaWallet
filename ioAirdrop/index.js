@@ -18,14 +18,13 @@
                         } = require('@solana/web3.js'); 
 
 /** 
- * Creates a new instance of Keypair, representing a Solana wallet
+ * Creates a new instance of Keypair, representing a Solana wallet for testing purpose
  * @constant {Keypair} wallet - A new instance of Keypair representing an immutable wallet
  * @note `let` : Creates a "buffer" instance for the wallet, allowing multiple wallets to be generated on it
  * @note `const` : Creates an instance of a new immutable wallet
  * @note `new` : An object constructor that creates an instance of a specific object type (Keypair from @solana/web3.js)
  */
-                        wallet = new Keypair();
-
+                        wallet = new Keypair(); // TEST WALLET
 /**  
  * Retrieves the public key from the generated wallet
  * @constant {PublicKey} publicKey - The public key associated with this wallet
