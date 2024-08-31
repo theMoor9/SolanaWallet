@@ -17,10 +17,6 @@ For those who are new to blockchain and need a stronger foundational understandi
 
 This resource will help you build the necessary knowledge to better engage with the following material.
 
-## Code Documentation Realeases
-
-- [IT](./release/IT/) 
-
 ## Cheat Sheet
 
 You can find the operational guides [here](./cheat_sheets/pdf/).
