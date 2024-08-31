@@ -18,10 +18,10 @@
 4. [Integrate JavaScript functions](#4-integrate-javascript-functions)
 5. [Balance](#5-balance)
 6. [Network](#6-network)
-	6.1 [Localnet](#Localnet)
-	6.2 [Devnet](#Devnet)
-	6.3 [Testnet](#testnet)
-	6.4 [Mainnet](#Mainnet)
+    - [Localnet](#Localnet)
+	- [Devnet](#Devnet)
+	- [Testnet](#testnet)
+	- [Mainnet](#Mainnet)
 ###### [§ Test Validator](#-Test-Validator-1)
 ###### [§ Airdrop](#-Airdrop-1)
 -  [JavaScript](#javascript)
@@ -29,10 +29,10 @@
 1. [Setup](#1-Setup)
 2. [Create](#2-create)
 3. [Account](#3-account)
-   - 3.1[Balance](#balance)
-4. [Mint](#4-mint)
-   - 4.1 [Limit Supply](#Limit-Supply)
-5. [Send](#Send)
+	- [Balance](#balance)
+1. [Mint](#4-mint)
+	- [Limit Supply](#Limit-Supply)
+1. [Send](#Send)
 ---
 
 ## **§ Prerequisites**
@@ -280,31 +280,36 @@ You can check the status of your wallet at https://explorer.solana.com/ by addin
 
 The Solana Network splits in four accessible branches:
 
-- ##### Localnet
-
+- #### Localnet
+	Ambiente di rete locale per testare applicazioni Solana senza connettersi alla rete pubblica.
+	
 ```sh
 solana balance --url http://localhost:8899
 
 solana balance --url localnet
 ```
 
-- ##### Devnet
+- #### Devnet
+	Rete di sviluppo pubblica di Solana per testare applicazioni in un ambiente simile a quello reale ma con fondi non reali.
+	
 ```sh
 solana balance --url https://api.devnet.solana.com
 
 solana balance --url localnet
 ```
 
-- ##### Testnet
-
+- #### Testnet
+	Rete di prova di Solana che simula condizioni di Mainnet con token non reali per testare nuove funzionalità e aggiornamenti.
+	
 ```sh
 solana balance --url https://api.testnet.solana.com
 
 solana balance --url testnet
 ```
 
-- ##### Mainnet
-
+- #### Mainnet
+	La rete principale di Solana dove avvengono le transazioni reali e le operazioni con token veri.
+	
 ```sh
 solana balance --url https://api.mainnet-beta.solana.com
 
@@ -338,7 +343,10 @@ solana-test-validator
 
 >No, we're not dropping bombs... Or, are we?
 
-
+Airdrop SOL on [Devnet](#Devnet)
+```sh
+solana airdrop 2 09j982ec92h981uev454y5yb45b45y4 --url devnet
+```
 ### JavaScript
 
 You can find the code [here](https://github.com/theMoor9/solana-wallet/blob/main/ioAirdrop/index.js) with a comprehensive set of comments for better understanding of dynamics. 
