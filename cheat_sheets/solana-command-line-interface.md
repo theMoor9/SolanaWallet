@@ -343,10 +343,12 @@ solana-test-validator
 
 >No, we're not dropping bombs... Or, are we?
 
-Airdrop SOL on [Devnet](#Devnet)
+Airdrop SOL
 ```sh
+# pubkey = 09j982ec92h981uev454y5yb45b45y4
 solana airdrop 2 09j982ec92h981uev454y5yb45b45y4 --url devnet
 ```
+
 ### JavaScript
 
 You can find the code [here](https://github.com/theMoor9/solana-wallet/blob/main/ioAirdrop/index.js) with a comprehensive set of comments for better understanding of dynamics. 
