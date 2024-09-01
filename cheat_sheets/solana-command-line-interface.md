@@ -1,7 +1,11 @@
-# **Solana Command Line Interface ( CLI )**
+# **Solana Command Line Interface (CLI)**
+#### Wallet Manager Cheatsheet
 
-> Hi, i 'm Kenneth and i will try to guide you through this cheatsheet for an easy way to access the Solana Technology.
+> Hi, i 'm Kenneth and i will guide you through this cheatsheet for an easy way to access the Solana Technology. I designed it to be procedural with a set of personal interventions providing metaphors for real-life cases. However, it can also be viewed by topic if needed.
 
+ <div style="font-size: 70%"><b>&#x1F553; Read Time: 9 m</b></div>
+
+---
 ##### **Table of contents**
 
 ###### [§ Prerequisites](#-Prerequisites-1)
@@ -130,7 +134,9 @@ solana --version
 solana config set --url localhost
 solana config get
 ```
-- Result
+	
+ Result
+	 
 ``` 
 Config File: /Users/your-name/.config/solana/cli/config.yml
 RPC URL: http://localhost:8899
@@ -165,14 +171,14 @@ mocha --version
 brew install yarn
 ```
 
-	or
+or
 
 *Install JS dependency* 🐧
 ```sh
 npm install --global yarn
 ```
 
-	then
+then
 
 *Install*
 ```sh
@@ -345,8 +351,8 @@ solana-test-validator
 
 Airdrop SOL
 ```sh
-# pubkey = 09j982ec92h981uev454y5yb45b45y4
-solana airdrop 2 09j982ec92h981uev454y5yb45b45y4 --url devnet
+# pubkey = 09j9hete82ec92h981uev433y5mb67b45q0
+solana airdrop 2 09j9hete82ec92h981uev433y5mb67b45q0 --url devnet
 ```
 
 ### JavaScript
@@ -362,15 +368,136 @@ You can find the code [here](https://github.com/theMoor9/solana-wallet/blob/main
 >Yes, this may be the bomb type. Make sure to create something big ☄️
 ### 1. Setup
 
-spl-token-cli
+After you got set up with Rust and the Solana CLI there is one other set up to be done and it is the Token CLI. This will allow us to manage our tokens.
+
+*Install*
+```sh
+cargo install spl-token-cli
+```
+
+*Version*
+```sh
+spl-token --version
+```
 
 ### 2. Create
+
+>By creating a token we mean "create the entity", designing it with its structural features, much like every bill is designed before release to the public in material, drawings and security elements.
+
+*Create*
+```sh
+spl-token create-token --url devnet
+```
+
+- Result
+
+```sh
+Creating token wo8qhct874htovn824hoq87rytovn7tmhcqo847y
+
+Signature:28c37rb872r3c0b378y...
+
+# Token Address ID: wo8qhct874htovn824hoq87rytovn7tmhcqo847y
+# Operation ID: 28c37rb872r3c0b378y...
+```
+
+The Token **Address** ID serves as a unique identifier in the blockchain world.
+
+>The token **Address** is similar to what we call the **Codice Fiscale** in Italy, the **Steueridentifikationsnummer** in Germany, or the **Social Security Number** in the US. 
+
+>While you can choose any name for yourself, these identifiers are crucial for government entities to track and manage individuals. Much like we need to do with our tokens.
+ 
 ### 3. Account
-- ##### Balance
+
+In order to store tokens you need an account set for each of them. Every account has its own token type, so that's where the *token address* comes handy. 
+
+>This means that every wallet can have multiple accounts storing different types of tokens like pockets in your real wallet for every type of banknotes.
+
+*Create an account in your wallet*
+```sh
+# We paste the Token Address for reference
+spl-token create-account wo8qhct874htovn824hoq87rytovn7tmhcqo847y --url devnet
+```
+
+- Result
+
+```sh
+Creating account eufq2he8u37rcyb987yv02984m1p270erx9b8237yx
+
+Signature: 19rg8r0cn328ynf...
+
+# Account Address ID: eufq2he8u37rcyb987yv02984m1p270erx9b8237yx
+# Operation ID: 19rg8r0cn328ynf...
+```
+
+> Account **Address**? Easy, as said for the token Address same thing for the Account.
+
+- #### Balance
+
+*Retrieve Balance of Token in wallet account*
+ ```sh
+ # We paste the Token Address again for reference 
+ 
+ spl-token balance wo8qhct874htovn824hoq87rytovn7tmhcqo847y --url devnet
+ ```
+
 ### 4. Mint
-- ##### Limit Supply
+
+>Minting a token means to create copy of it much like the governments prints money creating inflation and poverty by reducing the value of the printed asset, so be careful.
+
+*Add 1000 token to previously created account in wallet*
+```sh
+# We paste the Token Address again for reference
+
+spl-token mint wo8qhct874htovn824hoq87rytovn7tmhcqo847y 1000 --url devnet
+```
+
+**Only the creator of the token has minting privileges**
+
+- #### Supply
+
+	*Retrieve Circulating Supply of Minted Token in the Network*
+```sh
+# We paste the Token Address again for reference
+
+spl-token supply wo8qhct874htovn824hoq87rytovn7tmhcqo847y --url devnet
+```
+
+- #### Inflationary Limit
+
+	The spl-token CLI let us remove all powers to mint new tokens permanently to secure their value against inflation. 
+
+	*Impose Limit*
+	```sh
+# We paste the Token Address again for reference
+
+spl-token authorize wo8qhct874htovn824hoq87rytovn7tmhcqo847y mint --disable --url devent
+	```
+
+- #### Burn Tokens
+
+	The ability to remove your personal tokens from circulation.
+
+*Remove 1000 Personal Supply From Our Account*
+```sh
+# We paste the Account Address for reference
+
+spl-token burn eufq2he8u37rcyb987yv02984m1p270erx9b8237yx 991 --url devnet
+```
+
 ### 5. Send
 
+Giving that the receiving end, **on the same network**, has already a wallet with the dedicated account; we can send but we don't use the account address but the *Wallet Public Address*.
+
+>which is our **Public Key**!
+
+*Send to Receiving Wallet Using its Public Key*
+```sh
+# We paste first the Token Address and then the Public Key of receiver
+
+spl-token transfer wo8qhct874htovn824hoq87rytovn7tmhcqo847y 9 udhuh89237o93nn2978hf9feqoh8uhoeueou --url devnet
+```
+
+>Unfunded accounts of a wallet may give some warning messages so follow instruction if you encounter any of those. 
 
 ---
 
