@@ -27,9 +27,9 @@ This repository allows you to manage a Solana (SOL) wallet independently. With t
 
 ## Features
 
-- **Request Airdrop**: Obtain free SOL for testing and development. [iAirdrop](./iAirdrop)
-- **Create Your Own Token**: Generate and manage your custom tokens on the Solana blockchain. [iToken](./iToken)
-- **Stake Your SOL**: Put your SOL in stake to earn rewards. [iStake](./iStake)
+- **Request Airdrop**: Obtain free SOL for testing and development. [sAirdrop](./sAirdrop)
+- **Create Your Own Token**: Generate and manage your custom tokens on the Solana blockchain. [sToken](./sToken)
+- **Stake Your SOL**: Put your SOL in stake to earn rewards. [sStake](./sStake)
 
 ## Additional Notes
 
@@ -44,3 +44,6 @@ Kenneth Boldrini
 ## License
 
 This repository is licensed. See the [LICENSE](./LICENSE) file for more details.
+
+
+
