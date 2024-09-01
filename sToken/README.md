@@ -1,6 +1,6 @@
 # Solana Airdrop Wallet Setup
 
-This project is an example of how to create a Solana wallet, check the balance, and request a simulated airdrop on Devnet using Node.js and the `@solana/web3.js` library. (Devnet is a Solana test network that allows simulation of transactions without using real funds). The script will generate a temporary wallet.
+This project is an example of how to create a simulation of a Solana wallet to manage Tokens on Devnet (Devnet is a Solana test network that allows simulation of transactions without using real funds). The script will generate a temporary wallet.
 
 ## Prerequisites
 
@@ -50,16 +50,16 @@ npm init -y
 node setup.js
 ```
 
-	This command will check if the `@solana/web3.js` library is installed and, if not, install it automatically.
+	This command will check if the libraries are installed and, if not, install it automatically.
 
-5. **Run `index.js`** to create the Solana wallet and check the balance:
+5. **Run `index.js`** to create the Solana wallet and operate the functions:
 
 
 ```sh
 node index.js
 ```
 
-	After running, you will see the wallet's public key printed in the console. If configured to do so, you will also see the wallet's balance (initially 0 SOL for a new wallet).
+	After running, you will see the wallet's public key printed in the console. If configured to do so, you will also see the wallet's balance (initially 0 SOL for a new wallet). and 
 
 ## Author
 

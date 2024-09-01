@@ -1,8 +1,6 @@
 const { execSync } = require('child_process'); // Import the child_process library to run command line commands
 
-const packageName = '@solana/web3.js'; // Name of the dependency to install
-
-//Arrya di dipendenze  
+//Dependencies  
 const dependencies = [
     '@solana/web3.js',
     'prompt-sync',
@@ -24,7 +22,7 @@ function checkAndInstall(packageName) {
     }
 }
 
-//Ciclo per installare le dipendenze
+//Clicles to install dependencies
 dependencies.forEach(checkAndInstall);
 
 

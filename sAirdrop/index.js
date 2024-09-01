@@ -101,6 +101,7 @@
                         const getAirdrop = async () => {
                             try {
                                 const connectionLink = await getConnection();
+                                console.log("Requesting 2 SOL Airdrop for: ", publicKey.toBase58());
                                 const airdropSignature = await connectionLink.requestAirdrop(publicKey, 2 * LAMPORTS_PER_SOL);
                                 console.log("Airdrop Request Confirmed, Signature: ", airdropSignature);
 
