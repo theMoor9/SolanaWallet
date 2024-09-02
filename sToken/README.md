@@ -1,4 +1,4 @@
-# Solana Airdrop Wallet Setup
+# Solana Token Wallet Setup
 
 This project is an example of how to create a simulation of a Solana wallet to manage Tokens on Devnet (Devnet is a Solana test network that allows simulation of transactions without using real funds). The script will generate a temporary wallet.
 
@@ -32,7 +32,7 @@ You should see an output indicating the installed version of Node.js (e.g., `v16
     
 
 ```sh
-cd /percorso/dove/si/trova/index.js
+cd /Path/to/index.js
 ```
 
 3. **Generate `package.json`**: Before running `setup.js`, the user should initialize a Node.js project by running:

@@ -1,5 +1,5 @@
 /**
- * @file index.js is an example file for creating a Solana wallet and retrieving the wallet balance.
+ * @file index.js is an example file for creating a Temporary Solana wallet 
  * @note The code can be executed in a Node.js environment directly from the console with the current format.
  * @Note If preferred, documentation can be removed and Shift+Tab can be used to reset to the standard format.
  */

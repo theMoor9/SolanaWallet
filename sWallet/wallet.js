@@ -103,7 +103,7 @@
                             connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
                         } else if (network === 2) {
                             console.log("Mainnet selected");
-                            connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed');
+                            connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed'); //clusterApiUrl('mainnet')
                         } else {
                             console.log("Testnet selected");
                             connection = new Connection(clusterApiUrl('testnet'), 'confirmed'); 
