@@ -10,7 +10,7 @@ const{
     LAMPORTS_PER_SOL, // Constant for converting SOL value
 } = require('@solana/web3.js'); 
 const prompt = require('prompt-sync')();  // Import the prompt-sync library to receive user input
-const { delegateStake } = require('./delegate_stake'); // Import the delegateStake function from the delegate_stake.js file
+const { delegateStakeToValidator, getDelegations, deactivateStake } = require('./delegate_stake_manager'); // Import the delegateStake function from the delegate_stake.js file
 
 
 // START OF SOLANA WALLET SETUP
@@ -225,8 +225,20 @@ const getAirdrop = async () => {
 
                                 await getStakeStatus(stakePublicKey); 
 
-                                if (prompt("Do you want to delegate the stake to a random validator? (y/n): ") == "y") {
-                                    await delegateStake(stakePublicKey,wallet);
+                                if (prompt("Do you want to procede with staking features? (y/n): ") == "y") {
+                                    console.log("Choose action:");
+                                    console.log("[1] Check validator delegation status");
+                                    console.log("[2] Delegate stake");
+                                    console.log("[3] Deactivate stake");
+                                    if (prompt(">>") == "1") {
+                                        await getDelegations(prompt("Enter the validator's public key: "));
+                                    } else if (prompt(">>") == "2") {
+                                        await delegateStakeToValidator(stakePublicKey,wallet);
+                                    } else if (prompt(">>") == "3") {
+                                        await deactivateStake(stakePublicKey,wallet);
+                                    } else {    
+                                        console.log("Invalid option exiting...");
+                                    }
                                 }
 
                             } catch(error){
