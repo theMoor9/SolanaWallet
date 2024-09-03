@@ -73,10 +73,10 @@ node wallet_account.js
 	After running, you will see the wallet's public key printed in the console. If configured to do so, you will also see the wallet's balance (initially 0 SOL for a new wallet).
 
 
-7. **run `delegate_stake.js`** to delegate your staking to some validartor that you should trust:
+7. **run `wallet_account.js`** to find the option to delegate your staking to some validartor:
 
 ```sh
-node delegate_stake.js
+node wallet_account.js
 ```
 
 

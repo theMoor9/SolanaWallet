@@ -1,15 +1,17 @@
 const{          
-Connection,
-PublicKey,
-clusterApiUrl,
-Keypair, 
-StakeProgram,
-Authorized,
-Lockup,
-sendAndConfirmTransaction,
-LAMPORTS_PER_SOL, // Constant for converting SOL value
+    Connection,
+    PublicKey,
+    clusterApiUrl,
+    Keypair, 
+    StakeProgram,
+    Authorized,
+    Lockup,
+    sendAndConfirmTransaction,
+    LAMPORTS_PER_SOL, // Constant for converting SOL value
 } = require('@solana/web3.js'); 
 const prompt = require('prompt-sync')();  // Import the prompt-sync library to receive user input
+const { delegateStake } = require('./delegate_stake'); // Import the delegateStake function from the delegate_stake.js file
+
 
 // START OF SOLANA WALLET SETUP
 
@@ -83,6 +85,7 @@ const getAirdrop = async () => {
         console.error("Error: ", error);
     }
 }
+
 
 /**
  * @function minimumRent Calculates and returns the minimum balance required to exempt an account from rent on the Solana blockchain.
@@ -207,6 +210,7 @@ const getAirdrop = async () => {
 /** 
  * main - Main function to execute the operations.
  * @note for each function look up the documentation to understand the parameters and the return values.
+ * @function delegateStake - Delegates the stake to a validator. Look delegate_stake.js for more information.
  */
 
                         const main = async () => {
@@ -220,6 +224,10 @@ const getAirdrop = async () => {
                                 await getWalletBalance(walletPublicKey,'w');
 
                                 await getStakeStatus(stakePublicKey); 
+
+                                if (prompt("Do you want to delegate the stake to a random validator? (y/n): ") == "y") {
+                                    await delegateStake(stakePublicKey,wallet);
+                                }
 
                             } catch(error){
                                 console.error(error);
