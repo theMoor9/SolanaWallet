@@ -84,10 +84,6 @@ const getAirdrop = async () => {
     }
 }
 
-/** 
- * 
- */
-
 /**
  * @function minimumRent Calculates and returns the minimum balance required to exempt an account from rent on the Solana blockchain.
  * @note Rent is due unless account have a minimum balance that qualifies them for rent exemption.
@@ -209,8 +205,8 @@ const getAirdrop = async () => {
                         }
 
 /** 
- * @let stakeStatus - Retrieves the status of the stake account in object format.
- * @function getStakeActivation - Retrieves the status of the stake account.
+ * main - Main function to execute the operations.
+ * @note for each function look up the documentation to understand the parameters and the return values.
  */
 
                         const main = async () => {

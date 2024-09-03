@@ -2,6 +2,10 @@
 
 This project is an example of how to create a Solana wallet, check the balance, and request a simulated airdrop on Devnet (Devnet is a Solana test network that allows simulation of transactions without using real funds). The script will generate a temporary wallet.
 
+### Note
+
+The Topic code to be taken in consideration is shifted.
+
 ## Prerequisites
 
 ### Install Node.js
