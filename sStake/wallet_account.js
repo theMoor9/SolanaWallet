@@ -121,7 +121,7 @@ const getAirdrop = async () => {
                                     return await minimumRent();
                                 } else if (amountRequest > await connectionLink.getBalance(walletPublicKey)) {
                                     balance = await connectionLink.getBalance(walletPublicKey)
-                                    return balance + await connectionLink.minimumRent();
+                                    return balance + await minimumRent();
                                 }
                             }catch(error){
                                 console.error("Error: ", error);
@@ -149,11 +149,11 @@ const getAirdrop = async () => {
                             try {
                                 const connectionLink = await getConnection();
                                 const transaction = StakeProgram.createAccount({
-                                        authorized: new Authorized(walletPublicKey, walletPublicKey), // Wallet 
-                                        fromPubKey: walletPublicKey,
-                                        lamports: await amountToStake(),
-                                        lockup: new Lockup(0, 0, walletPublicKey),
-                                        stakeAccountPubKey: stakePublicKey,   
+                                        fromPubkey: walletPublicKey, // Funding Wallet
+                                        stakePubkey: stakePublicKey, // Stake Account
+                                        authorized: new Authorized(walletPublicKey, walletPublicKey), // Wallet Authorized to manage the stake account
+                                        lamports: await amountToStake(), // Amount to stake
+                                        lockup: new Lockup(0, 0, walletPublicKey), // Lockup period
                                 });
                                 const signature = await sendAndConfirmTransaction(
                                     connectionLink,
@@ -163,7 +163,8 @@ const getAirdrop = async () => {
                                 console.log("Stake Account Created, Signature: ", signature);
                                 await getWalletBalance(stakePublicKey,'s');
                             }catch(error){
-                                throw new Error("Insufficent Funds!");
+                                console.error("Error: ", error);
+                                //throw new Error("Insufficent Funds!");
                             }
                         }
 
