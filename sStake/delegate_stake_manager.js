@@ -6,7 +6,7 @@ const{
     sendAndConfirmTransaction,
 } = require('@solana/web3.js'); 
 const prompt = require('prompt-sync')();
-const { getValidators } = require('./get_validators'); // Import the getValidators function from the get_validators.js file
+const { getValidators } = require('./get_validators.js'); // Import the getValidators function from the get_validators.js file
 
 //Creates a getConnection object to interact with the Solana blockchain.
 const getConnection = async () => {

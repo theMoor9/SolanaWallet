@@ -10,7 +10,9 @@ const{
     LAMPORTS_PER_SOL, // Constant for converting SOL value
 } = require('@solana/web3.js'); 
 const prompt = require('prompt-sync')();  // Import the prompt-sync library to receive user input
-const { delegateStakeToValidator, getDelegations, deactivateStake } = require('./delegate_stake_manager'); // Import the delegateStake function from the delegate_stake.js file
+
+// Import from delegate_stake_manager to use the functions
+const { delegateStakeToValidator, getDelegations, deactivateStake } = require('./delegate_stake_manager.js'); 
 
 
 // START OF SOLANA WALLET SETUP
@@ -30,13 +32,13 @@ const { delegateStakeToValidator, getDelegations, deactivateStake } = require('.
                         const stakePublicKey = new PublicKey(stakeAccount.publicKey); 
 
 
-                        console.log("Wallet Public Key: ", walletPublicKey);
-                        console.log("Stake Account Public Key: ", stakePublicKey);
+                        console.log("Wallet Public Key: ", walletPublicKey.toBase58() );
+                        console.log("Stake Account Public Key: ", stakePublicKey.toBase58() );
 
 
 
 //Creates a getConnection object to interact with the Solana blockchain.
-const getConnection = async () => {
+async function getConnection() {
     try { // Try to execute the following code, otherwise proceed with the catch block
         const connection = new Connection(clusterApiUrl('devnet'), 'confirmed'); 
         return connection; // Returns connection obj
@@ -50,7 +52,7 @@ const getConnection = async () => {
  * @param {*} pk publicKey of the wallet
  * @param {*} id id of operation
  */
-const getWalletBalance = async (pk, id) => {
+const getMyBalance = async (pk, id) => {
     try {
         const connectionLink = await getConnection();
         if (id == "w") {
@@ -105,7 +107,7 @@ const getAirdrop = async () => {
 
 /** 
  * Handles the ammount request based on the user input and the minimum rent required.
- * @note The amount ha sto be converted to lamports.
+ * @note The amount may have to be converted to lamports.
  * @note The amount has to be greater than the minimum rent.
  * @note If the amount is greater than the balance, the balance is returned. 
  */
@@ -115,12 +117,15 @@ const getAirdrop = async () => {
                                 const amountRequest = parseInt(prompt("Enter the amount of SOL to stake: ")) * LAMPORTS_PER_SOL;
                                 console.log("Amount Requested: ", amountRequest / LAMPORTS_PER_SOL);
                                 // Checks if the amount requested is less than the minimum rent
-                                if (amountRequest < await minimumRent()) {;
+                                if (( amountRequest + await minimumRent() ) > await connectionLink.getBalance(walletPublicKey)) {
+                                    console.log("Insufficient Funds! Total balance will be used"); 
+                                    return balance - await minimumRent();
+                                } else if (amountRequest < await minimumRent()) {;
                                     console.log("Amount Requested is less than the minimum rent: ", await minimumRent());
                                     return await minimumRent();
                                 } else if (amountRequest > await connectionLink.getBalance(walletPublicKey)) {
                                     balance = await connectionLink.getBalance(walletPublicKey)
-                                    return balance + await minimumRent();
+                                    return balance - await minimumRent();
                                 }
                             }catch(error){
                                 console.error("Error: ", error);
@@ -134,7 +139,7 @@ const getAirdrop = async () => {
  * @function createAccount - Creates a new account for the stake activity.
  * @param authorized - Public Key of the wallet authorized to delegate the stake and manage the it.
  * @note authorized has two parameters: authorized.staker and authorized.withdrawer
- * @param fromPubKey - Public Key of the wallet that will pay and fund the transaction.
+ * @param fromPubkey - Public Key of the wallet that will pay and fund the transaction.
  * @param lamports - Amount of SOL to stake.
  * @param lockup - Lockup period for the stake account. Optional.
  * @note lockup has three parameters: lockup.unixTimestamp, lockup.epoch, lockup.custodian
@@ -160,7 +165,7 @@ const getAirdrop = async () => {
                                     [wallet,stakeAccount]
                                 );
                                 console.log("Stake Account Created, Signature: ", signature);
-                                await getWalletBalance(stakePublicKey,'s');
+                                await getMyBalance(stakePublicKey,'s');
                             }catch(error){
                                 console.error("Error: ", error);
                                 //throw new Error("Insufficent Funds!");
@@ -207,21 +212,54 @@ const getAirdrop = async () => {
                             console.log(`Stake status: ${status}`);
                         }
 
+/**
+ * This function withdraws from the stake account.
+ * @const StakeProgram - Object that handles the creation of the stake account.
+ * @function withdraw - Function that withdraws from the stake account.
+ * @param stakePubkey - The public key of the stake account to be withdrawn from.
+ * @param authorizedPubkey - The wallet that has authority over the stake account.
+ * @param toPubkey - The wallet that will recieve the withdrawn funds.
+ * @param lamports - The amount to withdraw.
+ * @function sendAndConfirmTransaction - Same as above.
+ */
+                        const withdrawStake = async () => {
+                            try {
+                                const connectionLink = await getConnection();
+                                
+                                const transaction = StakeProgram.withdraw({
+                                    stakePubkey: stakePublicKey,
+                                    authorizedPubkey: walletPublicKey,
+                                    toPubkey: walletPublicKey,
+                                    lamports: await getMyBalance(stakePublicKey,'s'), // Amount to withdraw
+                                });
+                                const signature = await sendAndConfirmTransaction(
+                                    connectionLink,
+                                    transaction,
+                                    [wallet]
+                                );
+                                console.log(`Stake Account Withdrawal sent to ${walletPublicKey.toBase58()}, Signature: ${signature}`);
+                            }catch(error){
+                                console.error("Error: ", error);
+                            }
+                        }
+
 /** 
  * main - Main function to execute the operations.
  * @note for each function look up the documentation to understand the parameters and the return values.
  * @function delegateStake - Delegates the stake to a validator. Look delegate_stake.js for more information.
+ * @function getDelegations - Retrieves the delegations of a validator. Look delegate_stake.js for more information.
+ * @function deactivateStake - Deactivates the stake account. Look delegate_stake.js for more information.
  */
 
                         const main = async () => {
                             try{
-                                await getWalletBalance(walletPublicKey,'w');
+                                await getMyBalance(walletPublicKey,'w');
                             
                                 await getAirdrop();
-                                await getWalletBalance(walletPublicKey,'w');
+                                await getMyBalance(walletPublicKey,'w');
 
                                 await commitStakeAccountTx();
-                                await getWalletBalance(walletPublicKey,'w');
+                                await getMyBalance(walletPublicKey,'w');
 
                                 await getStakeStatus(stakePublicKey); 
 
@@ -230,12 +268,15 @@ const getAirdrop = async () => {
                                     console.log("[1] Check validator delegation status");
                                     console.log("[2] Delegate stake");
                                     console.log("[3] Deactivate stake");
+                                    console.log("[4] Withdraw stake");
                                     if (prompt(">>") == "1") {
                                         await getDelegations(prompt("Enter the validator's public key: "));
                                     } else if (prompt(">>") == "2") {
                                         await delegateStakeToValidator(stakePublicKey,wallet);
                                     } else if (prompt(">>") == "3") {
                                         await deactivateStake(stakePublicKey,wallet);
+                                    } else if (prompt(">>") == "4") {
+                                        await withdrawStake();
                                     } else {    
                                         console.log("Invalid option exiting...");
                                     }
