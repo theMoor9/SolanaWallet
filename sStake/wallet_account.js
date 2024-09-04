@@ -107,26 +107,15 @@ const getAirdrop = async () => {
 
 /** 
  * Handles the ammount request based on the user input and the minimum rent required.
- * @note The amount may have to be converted to lamports.
+ * @note The amount may have to be converted to lamports to display.
  * @note The amount has to be greater than the minimum rent.
- * @note If the amount is greater than the balance, the balance is returned. 
+ * @note If the amount is greater than the balance, the balance minus the rent is returned. 
  */
                         const amountToStake = async () => {
                             try {
-                                const connectionLink = await getConnection();
-                                const amountRequest = parseInt(prompt("Enter the amount of SOL to stake: ")) * LAMPORTS_PER_SOL;
+                                const amountRequest = 0.3 * LAMPORTS_PER_SOL;
                                 console.log("Amount Requested: ", amountRequest / LAMPORTS_PER_SOL);
-                                // Checks if the amount requested is less than the minimum rent
-                                if (( amountRequest + await minimumRent() ) > await connectionLink.getBalance(walletPublicKey)) {
-                                    console.log("Insufficient Funds! Total balance will be used"); 
-                                    return balance - await minimumRent();
-                                } else if (amountRequest < await minimumRent()) {;
-                                    console.log("Amount Requested is less than the minimum rent: ", await minimumRent());
-                                    return await minimumRent();
-                                } else if (amountRequest > await connectionLink.getBalance(walletPublicKey)) {
-                                    balance = await connectionLink.getBalance(walletPublicKey)
-                                    return balance - await minimumRent();
-                                }
+                                return amountRequest + await minimumRent();
                             }catch(error){
                                 console.error("Error: ", error);
                             }
@@ -269,13 +258,14 @@ const getAirdrop = async () => {
                                     console.log("[2] Delegate stake");
                                     console.log("[3] Deactivate stake");
                                     console.log("[4] Withdraw stake");
-                                    if (prompt(">>") == "1") {
+                                    input = prompt(">>");
+                                    if (input == "1") {
                                         await getDelegations(prompt("Enter the validator's public key: "));
-                                    } else if (prompt(">>") == "2") {
+                                    } else if (input == "2") {
                                         await delegateStakeToValidator(stakePublicKey,wallet);
-                                    } else if (prompt(">>") == "3") {
+                                    } else if (input == "3") {
                                         await deactivateStake(stakePublicKey,wallet);
-                                    } else if (prompt(">>") == "4") {
+                                    } else if (input == "4") {
                                         await withdrawStake();
                                     } else {    
                                         console.log("Invalid option exiting...");

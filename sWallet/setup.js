@@ -22,7 +22,7 @@ function checkAndInstall(packageName) {
     }
 }
 
-//Clicles to install dependencies
+//Cicles to install dependencies
 dependencies.forEach(checkAndInstall);
 
 
