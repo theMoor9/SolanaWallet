@@ -8,7 +8,6 @@
                     PublicKey,
                     clusterApiUrl,
                     Keypair, 
-                    LAMPORTS_PER_SOL, // Costante di scambio per il porzionamento del valore del Sol
                 } = require('@solana/web3.js'); 
                 const fs = require('fs');
                 const prompt = require('prompt-sync')();

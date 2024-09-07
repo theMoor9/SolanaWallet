@@ -36,6 +36,7 @@ This repository allows you to manage a Solana (SOL) wallet independently. With t
 For specific details on how to use each feature, follow the instructions in the README files of the respective sub-repositories. Each feature is organized in its own directory, with a dedicated README providing further details and instructions.
 
 You can also find the official ***Solana Validator Documentation*** here at [docs.solanalabs.com](https://docs.solanalabs.com/)
+This documentation will let you dive deeper on the development letting you explore the knowledge to implement the mainnet part of the wallet system of Solana.
 
 ## Author
 
